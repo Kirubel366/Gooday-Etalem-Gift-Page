@@ -93,20 +93,45 @@
 .et-h2{font-size:clamp(26px,4vw,36px);font-weight:800;letter-spacing:-.02em;margin:12px 0 8px;}
 .et-sub{font-size:17px;color:#6E6577;margin:0 auto;max-width:520px;}
 
-.et-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:22px;}
-.et-card{cursor:pointer;background:#fff;border:1.5px solid #ECE4EB;border-radius:20px;padding:28px 24px;display:flex;flex-direction:column;position:relative;transition:transform .22s cubic-bezier(.2,.7,.3,1),box-shadow .22s,border-color .22s;}
+.et-grid{display:grid;grid-template-columns:repeat(5,minmax(220px,1fr));grid-auto-rows:max-content;gap:22px;align-items:center;margin-top:48px;}
+.et-card{cursor:pointer;background:#fff;border:1.5px solid #ECE4EB;border-radius:20px;padding:28px 24px;display:flex;flex-direction:column;justify-content:space-between;position:relative;transition:transform .22s cubic-bezier(.2,.7,.3,1),box-shadow .22s,border-color .22s;overflow:visible;height:300px;}
+.et-card:nth-child(2){margin-left:-25%;z-index:2;padding-right:25%;height:450px;}
+.et-card:nth-child(3){transform:scale(1.08);margin-left:-25%;margin-right:-25%;border-color:#E30B7B;box-shadow:0 26px 55px -24px rgba(227,11,123,.28);z-index:3;height:480px;}
+.et-card:nth-child(4){margin-right:-25%;z-index:2;padding-left:25%;height:450px;}
+.et-card:nth-child(1),
+.et-card:nth-child(5){z-index:1;height:390px;}
+.et-card:nth-child(1){padding-right:25%;}
+.et-card:nth-child(5){padding-left:25%;}
+.et-card::after{
+  content:'';
+  position:absolute;
+  left:0;
+  width:100%;
+  height:28px;
+  bottom:0;
+  background-image:url('Tilet.png');
+  background-repeat:no-repeat;
+  background-size:100% 100%;
+  pointer-events:none;
+  z-index:0;
+  border-radius:0 0 20px 20px;
+}
 .et-card:hover{transform:translateY(-6px);box-shadow:0 26px 50px -26px rgba(227,11,123,.4);border-color:#E30B7B;}
+.et-card:nth-child(3):hover{transform:translateY(-6px) scale(1.11);}
 .et-card:hover .et-book{background:#E30B7B;color:#fff;}
 .et-card:hover .et-ico{background:#E30B7B;color:#fff;}
-.et-badge{position:absolute;top:-11px;left:24px;background:#E30B7B;color:#fff;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:5px 11px;border-radius:100px;}
-.et-ico{width:52px;height:52px;border-radius:14px;background:#FDE3EF;color:#E30B7B;display:flex;align-items:center;justify-content:center;transition:background .22s,color .22s;}
+.et-badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:#E30B7B;color:#fff;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:5px 11px;border-radius:100px;z-index:2;}
+.et-card-head{display:flex;align-items:center;gap:16px;margin-top:10px;}
+.et-ico{width:52px;height:52px;border-radius:14px;background:#FDE3EF;color:#E30B7B;display:flex;align-items:center;justify-content:center;transition:background .22s,color .22s;flex-shrink:0;}
 .et-ico svg{width:26px;height:26px;}
-.et-name{font-size:19px;font-weight:800;letter-spacing:-.01em;margin:20px 0 6px;}
-.et-desc{font-size:14px;color:#6E6577;line-height:1.5;flex:1;}
+.et-name{margin:0;line-height:1.15;}
+.et-name-main{display:block;font-size:20px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:#E30B7B;}
+.et-name-secondary{font-size:15px;font-weight:700;color:#221826;margin-top:16px;line-height:1.3;}
+.et-desc{font-size:14px;color:#6E6577;line-height:1.5;flex:1;margin-top:14px;}
 .et-price{display:flex;align-items:baseline;gap:4px;margin:20px 0 18px;}
 .et-price b{font-size:32px;font-weight:800;letter-spacing:-.03em;}
 .et-price span{font-size:14px;color:#9A8FA3;font-weight:600;}
-.et-book{text-align:center;font-size:14px;font-weight:700;background:#FDF4F9;color:#E30B7B;padding:12px;border-radius:11px;transition:background .22s,color .22s;}
+.et-book{text-align:center;font-size:14px;font-weight:700;background:#FDF4F9;color:#E30B7B;padding:12px;border-radius:11px;transition:background .22s,color .22s;margin-bottom:14px;}
 
 /* how it works band */
 .et-band{background:#fff;border-top:1px solid #EFE6ED;border-bottom:1px solid #EFE6ED;margin-top:48px;}
@@ -186,6 +211,18 @@
 @keyframes etSlide{from{opacity:0;transform:translateX(14px)}to{opacity:1;transform:none}}
 @keyframes etSpin{to{transform:rotate(360deg)}}
 @keyframes etPop{0%{transform:scale(.4);opacity:0}60%{transform:scale(1.1)}100%{transform:scale(1);opacity:1}}
+@media(max-width:1100px){
+  .et-grid{grid-template-columns:repeat(3,minmax(220px,1fr));gap:22px;}
+  .et-card{width:auto!important;max-width:none!important;margin:0!important;height:auto!important;transform:none!important;padding-left:24px;padding-right:24px;}
+  .et-card:nth-child(1),.et-card:nth-child(2),.et-card:nth-child(3),.et-card:nth-child(4),.et-card:nth-child(5){margin:0!important;padding-left:24px;padding-right:24px;}
+  .et-card:nth-child(3){transform:none!important;}
+}
+@media(max-width:820px){
+  .et-grid{grid-template-columns:repeat(2,minmax(220px,1fr));gap:22px;}
+}
+@media(max-width:560px){
+  .et-grid{grid-template-columns:1fr;}
+}
 @media(max-width:820px){.et-steps{grid-template-columns:1fr 1fr;}}
 @media(max-width:520px){.et-row,.et-pays,.et-steps{grid-template-columns:1fr;}}
 </style>
@@ -211,11 +248,11 @@
       sparkle:'<path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M18 16l.7 2 2 .7-2 .7-.7 2-.7-2-2-.7 2-.7z"/>'
     },
     packages: [
-      {name:'One-Time Cleaning', desc:'A single professional deep clean for the whole home.', price:25, icon:'broom'},
-      {name:'One-Time Cooking', desc:'A cook prepares a fresh, home-style meal spread.', price:25, icon:'pot'},
-      {name:'One-Time Cooking & Cleaning', desc:'Cooking and a full clean in one convenient visit.', price:30, badge:'Popular', icon:'combo'},
-      {name:'Weekend Babysitting', desc:'Trusted childcare for a full weekend of peace of mind.', price:30, icon:'heart'},
-      {name:'Weekend Cooking & Cleaning', desc:'A weekend of meals and a spotless home, sorted.', price:30, icon:'sparkle'}
+      {headline:'አደዬ', name:'One-Time Cleaning', desc:'A single professional deep clean for the whole home.', price:25.9, icon:'broom'},
+      {headline:'ሆዮ', name:'One-Time Cooking', desc:'A cook prepares a fresh, home-style meal spread.', price:22.9, icon:'pot'},
+      {headline:'እቴቴ', name:'Weekend Cooking & Cleaning', desc:'A weekend of meals and a spotless home, sorted.', price:60, icon:'sparkle'},
+      {headline:'እታለም', name:'One-Time Cooking & Cleaning', desc:'Cooking and a full clean in one convenient visit.', price:35.9, badge:'Popular', icon:'combo'},
+      {headline:'ሀርሜ', name:'Weekend Babysitting', desc:'Trusted childcare for a full weekend of peace of mind.', price:40, icon:'heart'}
     ],
     channels: ['WhatsApp','Telegram','Email'],
     paymentMethods: [{name:'Stripe',desc:'Card · Apple / Google Pay'},{name:'ArifPay',desc:'Ethiopian banks & cards'}],
@@ -315,10 +352,11 @@
     renderCard(item, index) {
       return '<div class="et-card" data-i="'+index+'">' +
         (item.badge?'<span class="et-badge">'+this.escapeHtml(item.badge)+'</span>':'') +
-        '<div class="et-ico">'+this.getIconSvg(item.icon)+'</div>' +
-        '<div class="et-name">'+this.escapeHtml(item.name)+'</div>' +
+        '<div class="et-card-head"><div class="et-ico">'+this.getIconSvg(item.icon)+'</div>' +
+        '<div class="et-name"><span class="et-name-main">'+this.escapeHtml(item.headline)+'</span></div></div>' +
+        '<div class="et-name-secondary">'+this.escapeHtml(item.name)+'</div>' +
         '<div class="et-desc">'+this.escapeHtml(item.desc)+'</div>' +
-        '<div class="et-price"><b>$'+item.price+'</b></div>' +
+        '<div class="et-price"><b>$'+item.price.toFixed(2)+'</b></div>' +
         '<div class="et-book">Book Now</div></div>';
     },
     renderCards() {
