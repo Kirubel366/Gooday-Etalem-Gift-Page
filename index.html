@@ -3,20 +3,24 @@
 
 <!-- HERO -->
 <header class="et-hero">
-<div class="et-blob et-blob1"></div>
-<div class="et-blob et-blob2"></div>
-<div class="et-hero-in">
-<div class="et-pill">Etalem · Home Services</div>
-<h1 class="et-h1">Gift a <em>helping hand</em><br>to family in Addis</h1>
-<p class="et-lead">Pick a service below and book in under a minute. Our vetted professionals handle the rest — you pay from anywhere in the world.</p>
-<div class="et-trust">
-<span>✓ Vetted &amp; insured pros</span>
-<span>✓ Pay from anywhere</span>
-</div>
-</div>
+  <div class="et-hero-grid">
+    <div class="et-hero-copy">
+      <div class="et-pill">Etalem · home services</div>
+      <h1>GIFT a <span class="et-hero-accent">HELPING HAND</span> to FAMILY in ADDIS</h1>
+      <p>PICK a SERVICE BELOW and BOOK in UNDER a MINUTE. OUR VETTED PROFESSIONALS HANDLE the REST — YOU PAY from ANYWHERE in the WORLD.</p>
+      <div class="et-hero-actions">
+        <a class="et-btn et-btn-primary" href="javascript:void(0)" onclick="event.preventDefault(); document.getElementById('services').scrollIntoView({behavior:'smooth', block:'start'});">Choose a Service</a>
+        <a class="et-btn et-btn-secondary" href="https://gooday.io/service-guide" target="_blank" rel="noopener noreferrer">Read the Guide</a>
+      </div>
+    </div>
+
+    <div class="et-hero-visual">
+      <img class="et-main-image" src="FirstBG.png" alt="A premium home-service experience" />
+    </div>
+  </div>
 </header>
 
-<section class="et-wrap">
+<section class="et-wrap" id="services">
 <div class="et-head">
 <div class="et-eyebrow">Choose a service</div>
 <h2 class="et-h2">What can we take off their plate?</h2>
@@ -25,7 +29,7 @@
 <div class="et-grid" id="etalem-cards"></div>
 </section>
 
-<section class="et-band">
+<section class="et-band" id="how-it-works">
 <div class="et-wrap et-band-in">
 <div class="et-head">
 <div class="et-eyebrow">How it works</div>
@@ -46,7 +50,7 @@
 <h3 class="et-cta-h">Want the full picture?</h3>
 <p class="et-cta-p">Read our service guide — what's included, how sessions work, and everything in between.</p>
 </div>
-<a class="et-cta-btn" href="https://gooday.io/service-guide">Read the service guide →</a>
+<a class="et-cta-btn" href="https://gooday.io/service-guide" target="_blank" rel="noopener noreferrer">Read the service guide →</a>
 </div>
 </section>
 
@@ -54,8 +58,8 @@
 <div class="et-wrap et-foot-in">
 <div class="et-logo">Etalem <span>Services</span></div>
 <div class="et-flinks">
-<a href="https://gooday.io/etalem">gooday.io/etalem</a>
-<a href="https://gooday.io/service-guide">Service guide</a>
+<a href="https://gooday.io/etalem" target="_blank" rel="noopener noreferrer">gooday.io/etalem</a>
+<a href="https://gooday.io/service-guide" target="_blank" rel="noopener noreferrer">Service guide</a>
 <span>Support: 9675</span>
 </div>
 </div>
@@ -64,6 +68,8 @@
 </div>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Menbere&display=swap');
+
 /* Page styles for the Etalem landing page, booking cards, modal, and responsive behavior */
 #etalem-root, #etalem-root *{box-sizing:border-box;}
 #etalem-root{font-family:'Hanken Grotesk',system-ui,-apple-system,Segoe UI,sans-serif;color:#221826;-webkit-font-smoothing:antialiased;background:#FBFAFB;}
@@ -73,17 +79,37 @@
 #etalem-root a{text-decoration:none;}
 
 /* hero */
-.et-hero{background:#E30B7B;color:#fff;padding:84px 24px 92px;text-align:center;position:relative;overflow:hidden;}
-.et-blob{position:absolute;border-radius:50%;}
-.et-blob1{top:-120px;right:-80px;width:420px;height:420px;background:rgba(255,255,255,.06);}
-.et-blob2{bottom:-160px;left:-100px;width:380px;height:380px;background:rgba(255,255,255,.05);}
-.et-hero-in{max-width:760px;margin:0 auto;position:relative;}
-.et-pill{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.28);padding:8px 16px;border-radius:100px;}
-.et-h1{font-size:clamp(38px,6vw,58px);line-height:1.06;font-weight:800;letter-spacing:-.02em;margin:26px 0 0;}
-.et-h1 em{font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-weight:400;}
-.et-lead{font-size:19px;line-height:1.55;color:rgba(255,255,255,.9);max-width:560px;margin:22px auto 0;}
-.et-trust{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:30px;}
-.et-trust span{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);padding:10px 18px;border-radius:100px;font-size:14px;font-weight:600;}
+html{scroll-behavior:smooth;}
+.et-hero{background:linear-gradient(135deg,#fffafa 0%,#ffeaf3 38%,#fef4f8 58%,#ffffff 100%);color:#221826;padding:0 24px 74px;position:relative;overflow:hidden;}
+.et-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at top right,rgba(227,11,123,.24),transparent 38%),radial-gradient(circle at bottom left,rgba(14,68,125,.16),transparent 36%),linear-gradient(125deg,rgba(255,255,255,.55),rgba(255,240,247,.9));pointer-events:none;}
+.et-hero::after{content:'';position:absolute;top:0;left:0;width:100%;height:24px;background-image:url('Tilet.png'),url('Tilet.png'),url('Tilet.png'),url('Tilet.png');background-repeat:no-repeat;background-size:auto 100%;background-position:0 0,33.33% 0,66.66% 0,100% 0;pointer-events:none;opacity:.95;}
+.et-hero-grid{max-width:1200px;margin:28px auto 0;display:grid;grid-template-columns:1.04fr .96fr;gap:44px;align-items:center;position:relative;z-index:1;}
+.et-hero-copy{max-width:560px;}
+.et-pill{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;background:#FDE3EF;color:#E30B7B;border:1px solid rgba(227,11,123,.15);padding:10px 16px;border-radius:999px;}
+.et-hero-copy h1{font-size:clamp(28px,4.2vw,42px);line-height:1.08;font-weight:800;letter-spacing:-.03em;margin:20px 0 14px;color:#221826;font-family:'Menbere',sans-serif;}
+.et-hero-accent{font-family:'Menbere';font-style:italic;font-weight:600;color:#E30B7B;}
+.et-hero-copy p{font-size:18px;line-height:1.75;color:#6E6577;margin:0;max-width:520px;font-family:'Menbere',sans-serif;}
+.et-hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:26px;}
+.et-btn{display:inline-flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;padding:14px 24px;border-radius:999px;transition:transform .2s ease,box-shadow .2s ease,background .2s ease;}
+.et-btn:hover{transform:translateY(-2px);}
+.et-btn-primary{background:#E30B7B;color:#fff;box-shadow:0 16px 30px -16px rgba(227,11,123,.55);} 
+.et-btn-secondary{background:#ffffff;border:2px solid #E30B7B;color:#E30B7B;box-shadow:0 10px 24px rgba(227,11,123,.08);font-weight:800;letter-spacing:.01em;} 
+.et-btn-secondary:hover{background:#ffffff;border-color:#E30B7B;color:#E30B7B;} 
+.et-hero-visual{display:flex;justify-content:center;align-items:center;}
+.et-main-image{display:block;width:100%;max-width:540px;height:auto;border-radius:0;object-fit:contain;background:transparent;box-shadow:none;}
+@keyframes floatCard{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+
+@media(max-width:960px){
+  .et-hero-grid{grid-template-columns:1fr;gap:28px;}
+  .et-hero-copy{max-width:none;}
+  .et-hero-visual{justify-content:flex-start;}
+}
+@media(max-width:640px){
+  .et-hero{padding:0 16px 56px;}
+  .et-hero-copy h1{font-size:clamp(30px,8vw,42px);}
+  .et-hero-actions{flex-direction:column;align-items:stretch;}
+  .et-btn{width:100%;}
+}
 
 .et-wrap{max-width:1200px;margin:0 auto;padding:72px 24px 40px;}
 .et-wrap:first-of-type{padding-top:0;padding-bottom:24px; margin-top: 40px;}
@@ -191,6 +217,10 @@
 .et-btn{border:none;background:#E30B7B;color:#fff;font-size:15px;font-weight:700;padding:14px 26px;border-radius:12px;cursor:pointer;transition:background .15s,transform .1s;}
 .et-btn:hover{background:#c8096b;}
 .et-btn:active{transform:translateY(1px);}
+.et-btn.et-btn-primary{background:#E30B7B;color:#fff;border:none;box-shadow:0 16px 30px -16px rgba(227,11,123,.55);}
+.et-btn.et-btn-primary:hover{background:#E30B7B;color:#fff;}
+.et-btn.et-btn-secondary{background:#ffffff;border:2px solid #E30B7B;color:#E30B7B;box-shadow:0 10px 24px rgba(227,11,123,.08);font-weight:800;letter-spacing:.01em;border-radius:999px;}
+.et-btn.et-btn-secondary:hover{background:#ffffff;border-color:#E30B7B;color:#E30B7B;}
 .et-link{border:none;background:none;color:#6E6577;font-size:14px;font-weight:600;cursor:pointer;padding:8px 4px;}
 .et-spinwrap{padding:56px 28px 64px;text-align:center;}
 .et-spin{width:46px;height:46px;border:4px solid #F0E7EE;border-top-color:#E30B7B;border-radius:50%;margin:0 auto;animation:etSpin .8s linear infinite;}
@@ -211,7 +241,7 @@
 @keyframes etSlide{from{opacity:0;transform:translateX(14px)}to{opacity:1;transform:none}}
 @keyframes etSpin{to{transform:rotate(360deg)}}
 @keyframes etPop{0%{transform:scale(.4);opacity:0}60%{transform:scale(1.1)}100%{transform:scale(1);opacity:1}}
-@media(max-width:1100px){
+@media(max-width:1200px){
   .et-grid{grid-template-columns:repeat(3,minmax(220px,1fr));gap:22px;}
   .et-card{width:auto!important;max-width:none!important;margin:0!important;height:auto!important;transform:none!important;padding-left:24px;padding-right:24px;}
   .et-card:nth-child(1),.et-card:nth-child(2),.et-card:nth-child(3),.et-card:nth-child(4),.et-card:nth-child(5){margin:0!important;padding-left:24px;padding-right:24px;}
