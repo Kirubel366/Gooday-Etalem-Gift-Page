@@ -5,9 +5,9 @@
 <header class="et-hero">
   <div class="et-hero-grid">
     <div class="et-hero-copy">
-      <div class="et-pill">Etalem · home services</div>
-      <h1>GIFT a <span class="et-hero-accent">HELPING HAND</span> to FAMILY in ADDIS</h1>
-      <p>PICK a SERVICE BELOW and BOOK in UNDER a MINUTE. OUR VETTED PROFESSIONALS HANDLE the REST — YOU PAY from ANYWHERE in the WORLD.</p>
+      <div class="et-pill">Etalem · Home Services</div>
+      <h1>Gift a <span class="et-hero-accent">Helping Hand</span> to Family in Addis</h1>
+      <p>Pick a service below and book in under a minute. Our vetted professionals handle the rest — you pay from anywhere in the world.</p>
       <div class="et-hero-actions">
         <a class="et-btn et-btn-primary" href="javascript:void(0)" onclick="event.preventDefault(); document.getElementById('services').scrollIntoView({behavior:'smooth', block:'start'});">Choose a Service</a>
         <a class="et-btn et-btn-secondary" href="https://gooday.io/service-guide" target="_blank" rel="noopener noreferrer">Read the Guide</a>
@@ -81,13 +81,13 @@
 /* hero */
 html{scroll-behavior:smooth;}
 .et-hero{background:#ffffff;color:#221826;padding:0 24px 74px;position:relative;overflow:hidden;}
-.et-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at top right,rgba(226,30,129,.16),transparent 38%),radial-gradient(circle at bottom left,rgba(14,68,125,.08),transparent 36%),linear-gradient(125deg,rgba(255,255,255,.7),rgba(255,255,255,.95));pointer-events:none;}
-.et-hero::after{content:'';position:absolute;top:0;left:0;width:100%;height:24px;background-image:url('Tilet.png'),url('Tilet.png'),url('Tilet.png'),url('Tilet.png');background-repeat:no-repeat;background-size:auto 100%;background-position:0 0,33.33% 0,66.66% 0,100% 0;pointer-events:none;opacity:.95;}
+.et-hero::before{content:'';display:none;}
+.et-hero::after{content:'';display:none;}
 .et-hero-grid{max-width:1200px;margin:28px auto 0;display:grid;grid-template-columns:1.04fr .96fr;gap:44px;align-items:center;position:relative;z-index:1;}
 .et-hero-copy{max-width:560px;}
 .et-pill{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;background:#FBEAF4;color:#e21e81;border:1px solid rgba(226,30,129,.18);padding:10px 16px;border-radius:999px;}
 .et-hero-copy h1{font-size:clamp(28px,4.2vw,42px);line-height:1.08;font-weight:800;letter-spacing:-.03em;margin:20px 0 14px;color:#221826;font-family:'Menbere',sans-serif;}
-.et-hero-accent{font-family:'Menbere';font-style:italic;font-weight:600;color:#e21e81;}
+.et-hero-accent{font-family:'Menbere';font-weight:600;color:#e21e81;}
 .et-hero-copy p{font-size:18px;line-height:1.75;color:#7A7480;margin:0;max-width:520px;font-family:'Menbere',sans-serif;}
 .et-hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:26px;}
 .et-btn{display:inline-flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;padding:14px 24px;border-radius:999px;transition:transform .2s ease,box-shadow .2s ease,background .2s ease;}
@@ -97,7 +97,7 @@ html{scroll-behavior:smooth;}
 .et-btn-secondary:hover{background:#ffffff;border-color:#e21e81;color:#e21e81;}
  
 .et-hero-visual{display:flex;justify-content:center;align-items:center;}
-.et-main-image{display:block;width:100%;max-width:540px;height:auto;border-radius:0;object-fit:contain;background:transparent;box-shadow:none;}
+.et-main-image{display:block;width:100%;max-width:540px;height:auto;border-radius:32px;object-fit:contain;background:transparent;box-shadow:0 42px 160px -16px rgba(226,30,129,.55),0 26px 80px -28px rgba(226,30,129,.35);}
 @keyframes floatCard{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 
 @media(max-width:960px){
@@ -164,14 +164,14 @@ html{scroll-behavior:smooth;}
 .et-band{background:#ffffff;border-top:1px solid #E9E5EB;border-bottom:1px solid #E9E5EB;margin-top:48px;}
 .et-band-in{padding:76px 24px;}
 .et-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;}
-.et-step{display:flex;flex-direction:column;gap:12px;}
-.et-num{width:44px;height:44px;border-radius:12px;background:#F4F2F7;color:#e21e81;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;}
+.et-step{display:flex;flex-direction:column;gap:12px;padding:26px;border-radius:24px;background:rgba(226,30,129,.08);border:1px solid rgba(226,30,129,.14);}
+.et-num{width:44px;height:44px;border-radius:12px;background:#F4F2F7;color:#e21e81;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;border:2px solid rgba(226,30,129,.2);}
 .et-st{font-size:18px;font-weight:700;}
 .et-sd{font-size:15px;color:#7A7480;line-height:1.5;}
 
 /* cta */
 .et-cta{background:#F3F2F4;color:#221826;border-radius:22px;padding:44px 48px;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;}
-.et-cta-h{font-size:26px;font-weight:800;letter-spacing:-.02em;margin:0 0 8px;}
+.et-cta-h{font-size:26px;font-weight:800;letter-spacing:-.02em;margin:0 0 8px;color:#e21e81;}
 .et-cta-p{font-size:16px;color:#7A7480;margin:0;line-height:1.55;max-width:560px;}
 .et-cta-btn{background:#e21e81;color:#fff;font-size:16px;font-weight:700;padding:15px 28px;border-radius:12px;white-space:nowrap;}
 
