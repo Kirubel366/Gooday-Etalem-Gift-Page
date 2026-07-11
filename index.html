@@ -187,6 +187,8 @@ html{scroll-behavior:smooth;}
 .et-overlay{position:fixed;inset:0;z-index:99999;background:rgba(34,24,38,.55);backdrop-filter:blur(4px);display:flex;align-items:flex-start;justify-content:center;padding:40px 16px;overflow-y:auto;animation:etOverlay .2s ease;}
 .et-modal{width:100%;max-width:600px;background:#fff;border-radius:22px;box-shadow:0 40px 90px -30px rgba(34,24,38,.5);animation:etModal .28s cubic-bezier(.2,.7,.3,1);overflow:hidden;margin:auto;}
 .et-mhead{padding:24px 28px 0;position:relative;}
+.et-disclaimer{display:flex;align-items:flex-start;gap:10px;font-size:16px;font-weight:800;line-height:1.45;color:#A85500;background:#FFF5E8;border:1px solid #F3B26D;border-radius:12px;padding:14px 16px;}
+.et-disclaimer-icon{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#F59E0B;color:#fff;font-size:13px;font-weight:900;flex-shrink:0;margin-top:2px;}
 .et-close{position:absolute;top:20px;right:20px;width:34px;height:34px;border-radius:50%;border:none;background:#F4F2F7;color:#7A7480;font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center;}
 .et-ctx{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#9A8FA3;}
 .et-prog{display:flex;align-items:center;gap:12px;margin:16px 0 4px;}
@@ -230,8 +232,10 @@ html{scroll-behavior:smooth;}
 .et-pays{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
 .et-pay{cursor:pointer;text-align:left;border:2px solid #E9E5EB;background:#fff;border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:4px;transition:.15s;position:relative;}
 .et-pay.on{border-color:#e21e81;background:#FDF4F9;}
+.et-pay-static{cursor:default;pointer-events:none;border-color:#E9E5EB;background:#FBFBFD;}
 .et-pay .tick{position:absolute;top:14px;right:14px;width:20px;height:20px;border-radius:50%;background:#e21e81;color:#fff;display:none;align-items:center;justify-content:center;font-size:11px;font-weight:700;}
 .et-pay.on .tick{display:flex;}
+.et-pay-static .tick{display:none;}
 .et-pay .pname{font-size:16px;font-weight:800;}
 .et-pay .pdesc{font-size:13px;color:#7A7480;}
 .et-done{padding:52px 28px 60px;text-align:center;}
@@ -339,6 +343,7 @@ html{scroll-behavior:smooth;}
       return this.data.f;
     },
     resetModalState(selectedIndex) {
+      const selectedPackage = APP_CONFIG.packages[selectedIndex] || APP_CONFIG.packages[0];
       this.data.active = selectedIndex;
       this.data.phase = APP_CONFIG.defaults.phase;
       this.data.pay = APP_CONFIG.defaults.pay;
@@ -349,7 +354,7 @@ html{scroll-behavior:smooth;}
       this.data.followUpMessage = APP_CONFIG.defaults.followUpMessage;
       this.data.followUpDecision = APP_CONFIG.defaults.followUpDecision;
       this.data.followUpError = APP_CONFIG.defaults.followUpError;
-      this.data.f = Object.assign({}, APP_CONFIG.defaults.form, {service: APP_CONFIG.packages[selectedIndex].name});
+      this.data.f = Object.assign({}, APP_CONFIG.defaults.form, {service: selectedPackage.name});
       return this.data;
     },
     get() {
@@ -407,14 +412,12 @@ html{scroll-behavior:smooth;}
       const chips = APP_CONFIG.channels.map(function(channel){
         return '<button class="et-chip'+(Store.data.f.channel===channel?' on':'')+'" data-ch="'+channel+'">'+UI.escapeHtml(channel)+'</button>';
       }).join('');
-      const options = APP_CONFIG.packages.map(function(pkg){
-        return '<option'+(Store.data.f.service===pkg.name?' selected':'')+'>'+UI.escapeHtml(pkg.name)+'</option>';
-      }).join('');
       const relations = APP_CONFIG.relations.map(function(relation){
         return '<option'+(Store.data.f.relation===relation?' selected':'')+'>'+UI.escapeHtml(relation)+'</option>';
       }).join('');
       return '<div class="et-mbody">' +
         (Store.data.submitError?'<div class="et-alert">'+UI.escapeHtml(Store.data.submitError)+'</div>':'') +
+        '<div class="et-disclaimer" style="margin-bottom:18px"><div class="et-disclaimer-icon">ⓘ</div><div>This service is currently available for requests located in Addis Ababa only. Please confirm the recipient’s area is within Addis before continuing.</div></div>' +
         '<h3 class="et-h3">Service request details</h3><p class="et-mp">Tell us who it\'s for and what they need.</p>' +
         '<div class="et-legend">Requester information</div>' +
         '<div class="et-row">' +
@@ -424,36 +427,39 @@ html{scroll-behavior:smooth;}
         '<label class="et-field">Relationship with recipient<select class="et-input" data-k="relation">'+relations+'</select></label>' +
         '</div>' +
         '<div class="et-clabel">Preferred communication channel</div><div class="et-chips">'+chips+'</div>' +
-        '<div class="et-legend" style="margin-top:26px">Service details</div>' +
-        '<label class="et-field">Service type<select class="et-input" data-k="service">'+options+'</select></label>' +
-        '<label class="et-field" style="margin-top:14px">Additional instructions / notes <span class="et-optional">(optional)</span>' +
+        '<label class="et-field" style="margin-top:18px">Additional instructions / notes <span class="et-optional">(optional)</span>' +
         '<textarea class="et-input" data-k="notes" rows="2" placeholder="Anything the professional should know…" style="resize:vertical">'+this.escapeHtml(Store.data.f.notes)+'</textarea></label>' +
         '<div class="et-legend" style="margin-top:26px">Recipient information</div>' +
         '<div class="et-row">' +
         this.renderField('Recipient full name','recName','text','e.g. Selam Bekele') +
         this.renderField('Recipient phone number','recPhone','tel','+251 …') +
-        this.renderField('Service location (general area)','area','text','e.g. Bole, Addis Ababa',' et-full') +
+        '<label class="et-field et-full">Service location (general area) <span class="et-optional">(optional)</span>' +
+        '<input class="et-input" data-k="area" type="text" placeholder="e.g. Bole, Addis Ababa" value="'+this.escapeHtml(Store.data.f.area)+'"></label>' +
         '</div></div>' +
         '<div class="et-foot2"><div class="et-total">Total <b>$'+Store.getSelectedPackagePrice()+'</b></div>' +
         '<button class="et-btn" data-act="continue">Continue to Payment →</button></div>';
     },
     renderPaymentMethod() {
-      const payOptions = APP_CONFIG.paymentMethods.map(function(option){
-        return '<button class="et-pay'+(Store.data.pay===option.name?' on':'')+'" data-pay="'+option.name+'">' +
-          '<span class="tick">✓</span><span class="pname">'+UI.escapeHtml(option.name)+'</span><span class="pdesc">'+UI.escapeHtml(option.desc)+'</span></button>';
+      const availableMethods = Actions.getAvailablePaymentMethods();
+      const hasSingleMethod = availableMethods.length === 1;
+      const activePay = availableMethods.some(function(method){ return method.name === Store.data.pay; }) ? Store.data.pay : availableMethods[0] && availableMethods[0].name ? availableMethods[0].name : 'Stripe';
+      if (activePay !== Store.data.pay) Store.update('pay', activePay);
+      const payOptions = availableMethods.map(function(option){
+        return '<div class="et-pay et-pay-static">' +
+          '<span class="pname">'+UI.escapeHtml(option.name)+'</span><span class="pdesc">'+UI.escapeHtml(option.desc)+'</span></div>';
       }).join('');
       return '<div class="et-mbody">' +
         '<div style="margin-bottom:18px">' +
         '<h3 class="et-h3" style="margin-bottom:8px">Payment</h3>' +
-        '<p class="et-mp">Choose how you\'d like to pay. Your request is already saved.</p>' +
+        '<p class="et-mp">'+(hasSingleMethod ? 'Your request is ready for the available payment method.' : 'Choose how you\'d like to pay. Your request is already saved.')+'</p>' +
         '</div>' +
         '<div class="et-summary"><div style="padding-right: 15px;">' +
-        '<div class="et-ctx">Selected service</div>' +
+        '<div class="et-ctx">Service</div>' +
         '<div style="font-size:18px;font-weight:800;margin-top:4px">'+UI.escapeHtml(Store.getSelectedPackage().name)+'</div>' +
         '<div style="font-size:13px;color:#7A7480;margin-top:2px">For '+UI.escapeHtml(Store.data.f.recName || 'your recipient')+'</div>' +
         '</div><div class="big">$'+Store.getSelectedPackagePrice()+'</div></div>' +
         '<div class="et-clabel" style="margin:0 0 12px">Payment method</div><div class="et-pays">'+payOptions+'</div></div>' +
-        '<div class="et-foot2 et-foot2-center"><button class="et-btn" data-act="pay">Pay $'+Store.getSelectedPackagePrice()+' with '+UI.escapeHtml(Store.data.pay)+'</button></div>';
+        '<div class="et-foot2 et-foot2-center"><button class="et-btn" data-act="pay">Pay $'+Store.getSelectedPackagePrice()+'</button></div>';
     },
     renderBookingConfirmation() {
       const selectedService = UI.escapeHtml(Store.getSelectedPackage().name);
@@ -566,7 +572,7 @@ html{scroll-behavior:smooth;}
     updatePaymentButtonLabel() {
       if (!this.modal) return;
       const button = this.modal.querySelector('[data-act="pay"]');
-      if (button) button.textContent = 'Pay $' + Store.getSelectedPackagePrice() + ' with ' + this.escapeHtml(Store.data.pay);
+      if (button) button.textContent = 'Pay $' + Store.getSelectedPackagePrice();
     },
     createModal() {
       this.modal = document.createElement('div');
@@ -660,9 +666,16 @@ html{scroll-behavior:smooth;}
       if (!form.reqEmail.trim() || !Actions.isValidEmail(form.reqEmail)) errors.reqEmail = true;
       if (!form.recName.trim()) errors.recName = true;
       if (!form.recPhone.trim() || !Actions.isValidRecipientPhone(form.recPhone)) errors.recPhone = true;
-      if (!form.area.trim()) errors.area = true;
       Store.update('errors', errors);
       return Object.keys(errors).length === 0;
+    },
+    isEthiopianPhoneNumber(value) {
+      const normalized = (value || '').trim();
+      return normalized.startsWith('+251') || normalized.startsWith('09') || normalized.startsWith('07');
+    },
+    getAvailablePaymentMethods() {
+      if (Actions.isEthiopianPhoneNumber(Store.data.f.reqPhone)) return APP_CONFIG.paymentMethods.filter(function(method){ return method.name === 'ArifPay'; });
+      return APP_CONFIG.paymentMethods.filter(function(method){ return method.name === 'Stripe'; });
     },
     isValidEmail(value) {
       return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
@@ -696,20 +709,19 @@ html{scroll-behavior:smooth;}
         reqPhone: phoneValue && phoneValue.trim() ? Actions.getPhoneErrorText(phoneValue, false) : 'Please add a phone number.',
         reqEmail: 'Please add a valid email address.',
         recName: "Please enter the recipient's name.",
-        recPhone: phoneValue && phoneValue.trim() ? Actions.getPhoneErrorText(phoneValue, true) : 'Please add a phone number.',
-        area: 'Please add the area.'
+        recPhone: phoneValue && phoneValue.trim() ? Actions.getPhoneErrorText(phoneValue, true) : 'Please add a phone number.'
       }[key] || 'Required.';
     },
     buildBookingPayload() {
       const recipientName = (Store.data.f.recName || '').trim();
-      const selectedService = (Store.data.f.service || Store.getSelectedPackage().name || '').trim();
+      const selectedService = (Store.getSelectedPackage().name || Store.data.f.service || '').trim();
       return {
         fields: {
           summary: recipientName + ' - ' + selectedService,
           description: (Store.data.f.notes || 'No additional instructions provided.'),
           relation: {value: Store.data.f.relation},
           channel: {value: Store.data.f.channel},
-          service: {value: Store.data.f.service},
+          service: {value: selectedService},
           reqName: Store.data.f.reqName,
           reqPhone: Store.data.f.reqPhone,
           reqEmail: Store.data.f.reqEmail,
