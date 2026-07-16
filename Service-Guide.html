@@ -9,21 +9,17 @@
 :root {
   --bg: #f7f8fd;
   --surface: #ffffff;
-  --surface-soft: #fbfbfe;
   --card: #ffffff;
-  --bar: #eef0f6;
   --accent: #e21e81;
-  --accent-soft: rgba(226, 30, 129, 0.14);
   --text: #0f1728;
   --muted: #4b5568;
   --soft: #68738a;
   --border: rgba(15, 23, 40, 0.08);
   --shadow: 0 22px 55px rgba(15, 23, 42, 0.09);
-  --dark-card: linear-gradient(180deg, rgb(51 51 51 / var(--tw-bg-opacity, 1)) 0%, rgb(51 51 51 / var(--tw-bg-opacity, 1)) 100%);
   --radius-card: 24px;
   --radius-input: 14px;
   --radius-pill: 999px;
-  --container: 1180px;
+  --container: 980px;
   --transition: .3s ease;
 }
 * {
@@ -53,22 +49,23 @@ a {
   margin: 0 auto;
 }
 .section {
-padding: 110px 0;
+padding: 86px 0;
 background: var(--surface);
 }
+
 .hero-shell {
-background:radial-gradient(circle at bottom left, rgba(226, 30, 129, 0.16), transparent 30%),radial-gradient(circle at top right, rgba(255, 255, 255, 0.06), transparent 18%),linear-gradient(135deg, rgb(51 51 51 / var(--tw-bg-opacity, 1)) 0%, rgb(51 51 51 / var(--tw-bg-opacity, 1)) 45%, #d81a7a 100%);
-padding: 34px 42px;
+background: linear-gradient(135deg, #6B6B6B 0%, #808080 60%, #e21e81);
+padding: 28px 32px;
 border-radius: 20px;
 box-shadow: 0 35px 90px rgba(15, 23, 42, 0.18);
 border: 1px solid rgba(255,255,255,.10);
 }
 .eyebrow {
-margin: 0 0 18px;
-color: var(--accent);
+margin: 0 0 14px;
+color: #ef4ea3;
 text-transform: uppercase;
 letter-spacing: .15em;
-font-size: 13px;
+font-size: 12px;
 font-weight: 700;
 }
 h1, h2, h3, h4, p {
@@ -79,34 +76,34 @@ font-weight: 700;
 letter-spacing: -0.03em;
 }
 .hero-title {
-font-size: 48px;
-line-height: 1.08;
-max-width: 680px;
+font-size: 34px;
+line-height: 1.1;
+max-width: 640px;
 color: #fff;
 }
 .section-title {
-font-size: 42px;
-line-height: 1.1;
-margin-bottom: 18px;
+font-size: 34px;
+line-height: 1.14;
+margin-bottom: 16px;
 color: var(--text);
 }
 .text-body {
-font-size: 18px;
+font-size: 16px;
 color: var(--muted);
 }
 .hero-copy .text-body {
 color: rgba(255,255,255,.76);
 }
 .hero-copy .eyebrow {
-color: #ff7dbf;
+color: #ef4ea3;
 }
 .button,.nav-cta {
 display: inline-flex;
 align-items: center;
 justify-content: center;
 gap: 10px;
-padding: 15px 24px;
-font-size: 15px;
+padding: 13px 20px;
+font-size: 14px;
 border-radius: var(--radius-pill);
 transition: transform var(--transition), box-shadow var(--transition), background var(--transition), border-color var(--transition), color var(--transition);
 }
@@ -176,8 +173,8 @@ letter-spacing: .15em;
 color: var(--soft);
 margin-left: 0;
 line-height: 1.3;
-display: block;
-width: 100%;
+display: inline-block;
+width: auto;
 }
 .hero {
 padding: 38px 0 110px;
@@ -204,9 +201,6 @@ position: relative;
 min-height: 520px;
 border-radius: 20px;
 overflow: hidden;
-background: transparent;
-border: none;
-box-shadow: none;
 display: grid;
 align-items: end;
 }
@@ -214,7 +208,6 @@ align-items: end;
 position: relative;
 z-index: 1;
 height: 100%;
-padding: 0;
 display: grid;
 align-content: center;
 transition: transform var(--transition);
@@ -222,27 +215,14 @@ transition: transform var(--transition);
 .hero-media:hover .hero-preview {
 transform: scale(1.02);
 }
-.hero-card-visual {
-height: 420px;
+.hero-image {
+width: 100%;
+height: 100%;
+max-height: 520px;
+object-fit: cover;
 border-radius: 24px;
-background:linear-gradient(160deg, rgba(255,255,255,.20), rgba(255,255,255,.08));
-border: 1px solid rgba(255,255,255,.18);
-box-shadow: inset 0 1px 0 rgba(255,255,255,.18);
-display: grid;
-align-content: end;
-padding: 22px;
-}
-.hero-card-visual .bars {
-display: grid;
-grid-template-columns: repeat(6, 1fr);
-gap: 10px;
-align-items: end;
-height: 180px;
-}
-.hero-card-visual .bar {
-border-radius: 999px 999px 10px 10px;
-background: linear-gradient(180deg, #ff5ab1, #c9217d);
-box-shadow: 0 18px 40px rgba(226, 30, 129, 0.26);
+display: block;
+box-shadow: 0 28px 80px rgba(15, 23, 42, 0.18);
 }
 .two-col {
 display: grid;
@@ -273,9 +253,6 @@ min-height: auto;
 padding: 14px 16px 12px;
 transition: transform var(--transition), border-color var(--transition);
 }
-.feature-card .feature-copy {
-display: block;
-}
 .feature-card .feature-copy p {
 margin: 0;
 white-space: normal;
@@ -302,7 +279,7 @@ font-size: 15px;
 border: 1px solid rgba(226,30,129,.35);
 }
 .feature-card h3,.promise-card h3 {
-font-size: 20px;
+font-size: 18px;
 margin-bottom: 8px;
 color: var(--text);
 }
@@ -323,7 +300,7 @@ box-shadow: 0 35px 90px rgba(15, 23, 42, 0.22);
 color: #fff;
 }
 .buffer-card .eyebrow {
-color: #ff7dbf;
+color: #e21e81;
 }
 .buffer-steps {
 display: grid;
@@ -350,7 +327,7 @@ border-color: rgba(226,30,129,.45);
 box-shadow: 0 24px 60px rgba(226,30,129,.18);
 }
 .step-title {
-font-size: 20px;
+font-size: 18px;
 font-weight: 700;
 }
 .step-arrow {
@@ -393,10 +370,10 @@ border-bottom: 1px solid rgba(15,23,40,.16);
 .faq-list {
 display: grid;
 gap: 0;
-box-shadow: 0 0 0 1px rgba(226,30,129,.10), 0 22px 64px rgba(226,30,129,.16), 0 0 0 12px rgba(226,30,129,.03);
-border-radius: 20px;
-padding: 0 18px;
-background: rgba(255,255,255,.72);
+box-shadow: none;
+border-radius: 0;
+padding: 0;
+background: transparent;
 }
 .faq-item {
 border: none;
@@ -532,17 +509,17 @@ background: transparent;
 border: none;
 }
 .form-card {
-padding: 24px;
+padding: 20px;
 background: #ffffff;
 }
 .form-grid {
 display: grid;
 grid-template-columns: 1fr 1fr;
-gap: 14px;
+gap: 12px;
 }
 .field,.field-full {
 display: grid;
-gap: 8px;
+gap: 6px;
 }
 .field-full {
 grid-column: 1 / -1;
@@ -551,7 +528,7 @@ grid-column: 1 / -1;
 grid-column: 1 / -1;
 }
 label {
-font-size: 13px;
+font-size: 12px;
 text-transform: uppercase;
 letter-spacing: .15em;
 color: var(--soft);
@@ -559,18 +536,19 @@ color: var(--soft);
 .form-input,.form-select,.form-textarea {
 width: 100%;
 color: var(--text);
-padding: 14px 16px;
+padding: 12px 14px;
 outline: none;
 border: 1px solid rgba(15,23,40,.10);
 background: #fbfbfe;
 border-radius: var(--radius-input);
 transition: border-color var(--transition), box-shadow var(--transition), background var(--transition);
+min-height: 44px;
 }
 .form-input:first-child,.field-full,.field-full textarea {
 grid-column: 1 / -1;
 }
 .form-textarea {
-min-height: 130px;
+min-height: 118px;
 resize: vertical;
 }
 .textarea-meta {
@@ -592,11 +570,29 @@ box-shadow: 0 0 0 3px rgba(226,30,129,.16);
 background: #fff;
 }
 .form-submit {
-margin-top: 16px;
+margin-top: 12px;
 width: 100%;
 border: none;
 cursor: pointer;
 font: inherit;
+}
+.form-feedback {
+margin-top: 12px;
+font-size: 14px;
+font-weight: 600;
+min-height: 20px;
+}
+.form-feedback.success {
+color: #0f8a47;
+}
+.form-feedback.error {
+color: #c81f5b;
+}
+.field-error {
+font-size: 12px;
+color: #c81f5b;
+font-weight: 700;
+min-height: 14px;
 }
 .form-note {
 color: var(--soft);
@@ -606,13 +602,13 @@ text-align: center;
 }
 .cta-card {
 text-align: center;
-padding: 80px 24px;
+padding: 34px 18px;
 background: transparent;
 border: none;
 box-shadow: none;
 display: grid;
 justify-items: center;
-gap: 16px;
+gap: 12px;
 }
 .cta-card .section-title,.cta-card .text-body {
 margin-left: auto;
@@ -623,7 +619,7 @@ justify-content: center;
 width: 100%;
 }
 footer {
-padding: 20px 0 40px;
+padding: 12px 0 28px;
 color: var(--soft);
 font-size: 14px;
 background: var(--surface);
@@ -667,11 +663,25 @@ flex-direction: row;
 align-items: center;
 justify-content: space-between;
 width: 100%;
+padding: 14px 25px;
+gap: 10px;
 }
 .brand {
 justify-content: flex-start;
+flex: 1 1 auto;
+flex-direction: column;
+align-items: flex-start;
+line-height: 1.05;
 }
-.hero-actions,.hero-copy,.nav > a:last-child {
+.brand-small {
+display: block;
+width: auto;
+margin-top: 4px;
+}
+.brand-dot {
+display: none;
+}
+.hero-actions,.hero-copy {
 width: 100%;
 }
 .hero-actions {
@@ -682,8 +692,9 @@ gap: 8px;
 .nav-cta {
 width: auto;
 flex: 1 1 0;
-padding: 9px 12px;
-font-size: 11px;
+padding: 12px 14px;
+font-size: 12px;
+min-height: 44px;
 }
 .hero-title {
 font-size: 24px;
@@ -741,9 +752,9 @@ text-align: right;
       <div class="container hero-shell">
         <div class="hero-grid">
           <div class="hero-copy">
-            <p class="eyebrow">PREMIUM MANAGED MAID SERVICE · ADDIS ABABA</p>
-            <h1 class="hero-title">A trusted professional at home — and none of the hassle of managing one.</h1>
-            <p class="text-body">Etalem gives you a trained, background-checked professional for cooking, cleaning, or childcare. We handle the matching, scheduling, payment, renewals, and replacements. You just enjoy the help.</p>
+            <p class="eyebrow">PREMIUM HOME CARE BY ETALEM PROFESSIONALS · ADDIS ABABA</p>
+            <h1 class="hero-title">A trusted Etalem professional at home — and none of the hassle of managing one.</h1>
+            <p class="text-body">Etalem gives you a trained, background-checked Etalem professional for cooking, cleaning, or childcare. We handle the matching, scheduling, payment, renewals, and replacements. You just enjoy the help.</p>
             <div class="hero-actions">
               <a href="#request" class="button button-primary">Request Etalem →</a>
               <a href="#what" class="button button-secondary">How it works</a>
@@ -752,16 +763,7 @@ text-align: right;
 
           <div class="hero-media">
             <div class="hero-preview">
-              <div class="hero-card-visual">
-                <div class="bars" aria-hidden="true">
-                  <div class="bar" style="height: 54%;"></div>
-                  <div class="bar" style="height: 72%;"></div>
-                  <div class="bar" style="height: 42%;"></div>
-                  <div class="bar" style="height: 89%;"></div>
-                  <div class="bar" style="height: 61%;"></div>
-                  <div class="bar" style="height: 94%;"></div>
-                </div>
-              </div>
+              <img src="FirstBG.png" alt="Premium home care illustration" class="hero-image" />
             </div>
           </div>
         </div>
@@ -773,7 +775,7 @@ text-align: right;
         <div>
           <p class="eyebrow">What is Etalem</p>
           <h2 class="section-title">Help at home, fully managed.</h2>
-          <p class="text-body">Etalem gives you a trained, background-checked professional for cooking, cleaning, or childcare — and we take care of everything around them.</p>
+          <p class="text-body">Etalem gives you a trained, background-checked Etalem professional for cooking, cleaning, or childcare — and we take care of everything around them.</p>
           <p class="text-body" style="margin-top:18px;">We match you with the right person, manage the schedule and payments, and step in with a replacement if anything goes wrong. If you’re not satisfied, we make it right.</p>
           <p class="text-body" style="margin-top:18px;">One service. One point of contact. No guesswork.</p>
         </div>
@@ -807,8 +809,8 @@ text-align: right;
       <div class="container center-card">
         <div class="buffer-card">
           <p class="eyebrow">THE MANAGEMENT BUFFER</p>
-          <h2 class="section-title">You only ever talk to one person.</h2>
-          <p class="text-body">Your Account Manager handles the professional, the schedule, and any issue that comes up — so you never have to manage the worker yourself.</p>
+          <h2 class="section-title">You deal with Etalem — not the worker directly.</h2>
+          <p class="text-body">You have one point of contact, and we handle the coordination, follow-up, and issue resolution for you. That means less stress, fewer moving parts, and a fully managed service from start to finish.</p>
 
           <div class="buffer-steps">
             <div class="step">
@@ -819,17 +821,17 @@ text-align: right;
             <div class="step-arrow">→</div>
             <div class="step active">
               <div class="icon-badge" style="margin-bottom:10px;">◎</div>
-              <div class="step-title">Your Account Manager</div>
-              <div class="text-body" style="font-size:16px; color: rgba(255,255,255,.76);">Schedules, feedback, problem-solving</div>
+              <div class="step-title">Account Manager</div>
+              <div class="text-body" style="font-size:16px; color: rgba(255,255,255,.76);">Handles scheduling, coordination, and issue resolution</div>
             </div>
             <div class="step-arrow">→</div>
             <div class="step">
               <div class="icon-badge" style="margin-bottom:10px;">△</div>
-              <div class="step-title">Etalem professional </div>
+              <div class="step-title">Etalem professional</div>
               <div class="text-body" style="font-size:16px; color: rgba(255,255,255,.76);">Delivers the service at home</div>
             </div>
           </div>
-          <p class="text-body" style="margin-top: 18px; color: #f13995; font-weight: 700; text-align: center; font-size: 14px; letter-spacing: .08em; text-transform: uppercase;">Less friction. Managed quality.</p>
+          <p class="text-body" style="margin-top: 18px; color: #f13995; font-weight: 700; text-align: center; font-size: 14px; letter-spacing: .08em; text-transform: uppercase;">One point of contact. Etalem handles the rest.</p>
         </div>
       </div>
     </section>
@@ -840,31 +842,31 @@ text-align: right;
         <h2 class="section-title">Five things we guarantee.</h2>
         <div class="promise-grid">
           <article class="promise-card">
-            <div class="icon-badge">✕</div>
-            <h3>Vetted professionals</h3>
+            <div class="icon-badge">🛡</div>
+            <h3>Vetted Etalem professionals</h3>
             <p class="text-body" style="font-size:16px;">Trained in hotels or international households, with a verified criminal-record check.</p>
           </article>
 
           <article class="promise-card">
-            <div class="icon-badge">✕</div>
+            <div class="icon-badge">🔄</div>
             <h3>Reliability guarantee</h3>
-            <p class="text-body" style="font-size:16px;">If your professional can’t make it, we arrange a replacement — usually within 48–72 hours.</p>
+            <p class="text-body" style="font-size:16px;">If your Etalem professional can’t make it, we arrange a replacement — usually within 48–72 hours.</p>
           </article>
 
           <article class="promise-card">
-            <div class="icon-badge">✕</div>
+            <div class="icon-badge">👤</div>
             <h3>One point of contact</h3>
             <p class="text-body" style="font-size:16px;">A dedicated Account Manager for scheduling, feedback, and anything else you need.</p>
           </article>
 
           <article class="promise-card">
-            <div class="icon-badge">✕</div>
+            <div class="icon-badge">✓</div>
             <h3>We stand behind the work</h3>
             <p class="text-body" style="font-size:16px;">Not satisfied? We arrange a replacement or refund your unused sessions.</p>
           </article>
 
           <article class="promise-card">
-            <div class="icon-badge">✕</div>
+            <div class="icon-badge">🕒</div>
             <h3>Flexible when life changes</h3>
             <p class="text-body" style="font-size:16px;">Reschedule with 48 hours’ notice, or pause for up to 3 months when you travel.</p>
           </article>
@@ -876,8 +878,8 @@ text-align: right;
       <div class="container">
         <div class="faq-header">
           <div>
-            <p class="eyebrow">FAQ</p>
-            <h2 class="section-title">Questions, answered with clarity.</h2>
+            <p class="eyebrow">GOOD TO KNOW</p>
+            <h2 class="section-title">Frequently asked questions</h2>
           </div>
         </div>
 
@@ -890,7 +892,7 @@ text-align: right;
             </label>
             <div class="faq-answer">
               <div>
-                <p>Etalem is a fully managed service, so we work hard to keep every session on track. If your professional can't come, your Account Manager arranges a replacement as quickly as possible. You're never charged for a session you don't receive.</p>
+                <p>Etalem is a fully managed service, so we work hard to keep every session on track. If your Etalem professional can't come, your Account Manager arranges a replacement as quickly as possible. You're never charged for a session you don't receive.</p>
               </div>
             </div>
           </div>
@@ -916,7 +918,7 @@ text-align: right;
             </label>
             <div class="faq-answer">
               <div>
-                <p>We want you fully satisfied. If your professional isn't the right fit, we'll arrange a replacement — up to three times.</p>
+                <p>We want you fully satisfied. If your Etalem professional isn't the right fit, we'll arrange a replacement — up to three times.</p>
               </div>
             </div>
           </div>
@@ -929,7 +931,7 @@ text-align: right;
             </label>
             <div class="faq-answer">
               <div>
-                <p>You can pause your service for up to three months and keep your remaining sessions. When you return, we resume from where you left off — with a new Etalem professional. Note: if our rates have changed while you were away, the new rate applies. Just tell your Account Manager at least 48 hours before your next session.</p>
+                <p>You can pause your service for up to three months, and your unused sessions stay available. When you return, we resume from where you left off, and any new rate will apply if pricing has changed while you were away. Please tell your Account Manager at least 48 hours before your next session.</p>
               </div>
             </div>
           </div>
@@ -955,7 +957,7 @@ text-align: right;
             </label>
             <div class="faq-answer">
               <div>
-                <p>Yes. Every Etalem professional is ID-verified and background-checked, with a cleared criminal record, before joining us. For extra peace of mind, we recommend storing cash and valuables safely and being home for the first visit. Both you and your professional are expected to report any incident right away. GoodayOn is not liable for theft or other crimes, but we cooperate fully with the authorities whenever needed.</p>
+                <p>Yes. Every Service Provider is background-checked, ID verified, and screened before joining our platform. For added peace of mind, we recommend securing valuables and being present during the first visit. In the unlikely event of theft or other criminal activity, GoodayOn will cooperate fully with the relevant authorities.</p>
               </div>
             </div>
           </div>
@@ -968,7 +970,7 @@ text-align: right;
             </label>
             <div class="faq-answer">
               <div>
-                <p>You pay in advance, before each cycle begins. One cycle covers four weeks — for example, weekly service is four sessions per cycle. To continue, you simply pay before the next four-week cycle starts. We'll share accepted payment methods with you directly.</p>
+                <p>You pay in advance before each cycle begins, and one cycle equals four weeks, so weekly service covers four sessions. Pricing may change when you renew, and we’ll send you the available payment methods.</p>
               </div>
             </div>
           </div>
@@ -1024,40 +1026,44 @@ text-align: right;
             <p class="text-body">Fill this in and our team will call you within 24 hours to confirm the details and answer any questions.</p>
 
             <div class="checklist">
-              <div class="check-item"><span class="check-icon">✓</span> Vetted, background-checked professionals</div>
+              <div class="check-item"><span class="check-icon">✓</span> Vetted, background-checked Etalem professionals</div>
               <div class="check-item"><span class="check-icon">✓</span> Matched within 72 hours</div>
               <div class="check-item"><span class="check-icon">✓</span> Full refund on unused sessions</div>
               <div class="check-item"><span class="check-icon">✓</span> Your own dedicated Account Manager</div>
             </div>
           </div>
 
-          <form class="form-card">
+          <form id="request-form" class="form-card" novalidate>
             <div class="form-grid">
               <div class="field-full">
                 <label for="name">Full name</label>
-                <input class="form-input" id="name" type="text" placeholder="e.g. Selam Bekele" />
+                <input class="form-input" id="name" name="name" type="text" placeholder="e.g. Selam Bekele" required data-error="Please enter your full name." />
+                <div class="field-error" id="name-error"></div>
               </div>
               <div class="field">
                 <label for="location">Location</label>
-                <input class="form-input" id="location" type="text" placeholder="e.g. Bole, Addis Ababa" />
+                <input class="form-input" id="location" name="location" type="text" placeholder="e.g. Bole, Addis Ababa" required data-error="Please enter your location." />
+                <div class="field-error" id="location-error"></div>
               </div>
               <div class="field">
                 <label for="phone">Phone number</label>
-                <input class="form-input" id="phone" type="tel" placeholder="+251 9..." />
+                <input class="form-input" id="phone" name="phone" type="tel" placeholder="+251 9..." required data-error="Please enter a valid phone number." />
+                <div class="field-error" id="phone-error"></div>
               </div>
               <div class="field">
                 <label for="service">Which service</label>
-                <select class="form-select" id="service">
+                <select class="form-select" id="service" name="service" required data-error="Please choose a service.">
                   <option value="" selected disabled>Choose a service</option>
                   <option>Cooking</option>
                   <option>Cleaning</option>
                   <option>Nanny</option>
                   <option>Cooking and Cleaning</option>
                 </select>
+                <div class="field-error" id="service-error"></div>
               </div>
               <div class="field">
                 <label for="home">Home type</label>
-                <select class="form-select" id="home">
+                <select class="form-select" id="home" name="home" required data-error="Please choose your home type.">
                   <option value="" selected disabled>Choose home type</option>
                   <option>Apartment</option>
                   <option>Villa</option>
@@ -1066,17 +1072,20 @@ text-align: right;
                   <option>G+3</option>
                   <option>Condominium</option>
                 </select>
+                <div class="field-error" id="home-error"></div>
               </div>
               <div class="field-full">
                 <label for="details">TELL US ABOUT YOUR TASK</label>
-                <textarea class="form-textarea" id="details" placeholder="What would you like help with, and how often?" maxlength="500"></textarea>
+                <textarea class="form-textarea" id="details" name="details" placeholder="What would you like help with, and how often?" maxlength="500" required data-error="Please tell us about your task."></textarea>
                 <div class="textarea-meta">
                   <span id="char-count">0/500</span>
                   <span id="char-error" class="char-error" hidden>Maximum 500 characters</span>
                 </div>
+                <div class="field-error" id="details-error"></div>
               </div>
             </div>
             <button type="submit" class="button button-primary form-submit">Submit request</button>
+            <p id="form-feedback" class="form-feedback" aria-live="polite"></p>
             <p class="form-note">No payment now. We’ll call to confirm everything first.</p>
           </form>
         </div>
@@ -1096,12 +1105,11 @@ text-align: right;
       </div>
     </section>
   </main>
-
-  <footer>
-    <div class="container">© 2026 Etalem — Designed for modern service teams.</div>
-  </footer>
-
   <script>
+    // Update this single value to point the form at your n8n webhook.
+    const WEBHOOK_URL = 'PASTE_YOUR_N8N_WEBHOOK_URL_HERE';
+
+    // Keep only one FAQ item open at a time for the accordion behavior.
     const faqInputs = document.querySelectorAll('.faq-item input[type="checkbox"]');
     faqInputs.forEach((input) => {
       input.addEventListener('change', () => {
@@ -1113,10 +1121,15 @@ text-align: right;
       });
     });
 
+    // Cache the form and the UI elements used for validation and feedback.
+    const requestForm = document.getElementById('request-form');
     const detailsField = document.getElementById('details');
     const charCount = document.getElementById('char-count');
     const charError = document.getElementById('char-error');
+    const formFeedback = document.getElementById('form-feedback');
+    const submitButton = requestForm.querySelector('button[type="submit"]');
 
+    // Keep the textarea counter synced with the actual text length.
     function updateCharCount() {
       const length = detailsField.value.length;
       charCount.textContent = `${length}/500`;
@@ -1128,6 +1141,101 @@ text-align: right;
         charError.hidden = true;
       }
     }
+
+    // Show or clear the inline validation message for a given field.
+    function setFieldError(fieldId, message) {
+      const field = document.getElementById(fieldId);
+      const errorNode = document.getElementById(`${fieldId}-error`);
+      if (!field || !errorNode) return;
+
+      field.setAttribute('aria-invalid', message ? 'true' : 'false');
+      errorNode.textContent = message || '';
+    }
+
+    // Run the required checks before the form is submitted.
+    function validateForm() {
+      let isValid = true;
+      const fields = [
+        { id: 'name', validator: value => value.trim().length >= 2 },
+        { id: 'location', validator: value => value.trim().length >= 2 },
+        { id: 'phone', validator: value => value.replace(/\D/g, '').length >= 8 },
+        { id: 'service', validator: value => value.trim() !== '' },
+        { id: 'home', validator: value => value.trim() !== '' },
+        { id: 'details', validator: value => value.trim().length >= 10 }
+      ];
+
+      fields.forEach(({ id, validator }) => {
+        const field = document.getElementById(id);
+        const error = field?.dataset?.error || 'Please complete this field.';
+        const value = field?.value || '';
+        const isFieldValid = validator(value);
+
+        if (!isFieldValid) {
+          setFieldError(id, error);
+          isValid = false;
+        } else {
+          setFieldError(id, '');
+        }
+      });
+
+      return isValid;
+    }
+
+    // Submit the form payload to the configured webhook and handle the response.
+    requestForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      formFeedback.className = 'form-feedback';
+      formFeedback.textContent = '';
+
+      if (!validateForm()) {
+        return;
+      }
+
+      if (!WEBHOOK_URL || WEBHOOK_URL === 'PASTE_YOUR_N8N_WEBHOOK_URL_HERE') {
+        formFeedback.classList.add('error');
+        formFeedback.textContent = 'Please set the webhook URL in the form script before submitting.';
+        return;
+      }
+
+      submitButton.disabled = true;
+      submitButton.textContent = 'Sending...';
+
+      // Build the payload that the webhook receiver will receive.
+      const payload = {
+        name: document.getElementById('name').value.trim(),
+        location: document.getElementById('location').value.trim(),
+        phone: document.getElementById('phone').value.trim(),
+        service: document.getElementById('service').value,
+        home: document.getElementById('home').value,
+        details: document.getElementById('details').value.trim(),
+        submittedAt: new Date().toISOString()
+      };
+
+      try {
+        const response = await fetch(WEBHOOK_URL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        });
+
+        if (!response.ok) {
+          throw new Error(`Webhook returned ${response.status}`);
+        }
+
+        formFeedback.classList.add('success');
+        formFeedback.textContent = 'Your request was sent successfully. We will be in touch shortly.';
+        requestForm.reset();
+        updateCharCount();
+      } catch (error) {
+        formFeedback.classList.add('error');
+        formFeedback.textContent = 'Something went wrong while sending the request. Please try again in a moment.';
+      } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = 'Submit request';
+      }
+    });
 
     detailsField.addEventListener('input', updateCharCount);
     updateCharCount();
