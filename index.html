@@ -1140,6 +1140,28 @@ text-align: right;
       }
     }
 
+    function normalizePhoneValue(value) {
+      return (value || '').trim().replace(/\s+/g, '');
+    }
+
+    function isValidEthiopianPhoneNumber(value) {
+      const normalized = normalizePhoneValue(value);
+      if (!normalized) return false;
+      if (normalized.startsWith('+251')) return /^\+251(?:9|7)\d{8}$/.test(normalized);
+      if (normalized.startsWith('251')) return /^251(?:9|7)\d{8}$/.test(normalized);
+      if (normalized.startsWith('09') || normalized.startsWith('07')) return /^(?:09|07)\d{8}$/.test(normalized);
+      return false;
+    }
+
+    function getPhoneErrorMessage(value) {
+      const normalized = normalizePhoneValue(value);
+      if (!normalized) return 'Please add a phone number.';
+      if (normalized.startsWith('+251')) return 'Use +251 followed by 9 digits.';
+      if (normalized.startsWith('251')) return 'Use 251 followed by 9 digits.';
+      if (normalized.startsWith('09') || normalized.startsWith('07')) return 'Use 8 digits after 09 or 07.';
+      return 'Please enter a valid Ethiopian phone number.';
+    }
+
     // Show or clear the inline validation message for a given field.
     function setFieldError(fieldId, message) {
       const field = document.getElementById(fieldId);
@@ -1150,16 +1172,48 @@ text-align: right;
       errorNode.textContent = message || '';
     }
 
+    function clearFieldError(fieldId) {
+      setFieldError(fieldId, '');
+    }
+
+    function bindLiveValidation() {
+      requestForm.querySelectorAll('input, select, textarea').forEach((field) => {
+        field.addEventListener('input', () => {
+          const fieldId = field.id;
+          if (fieldId === 'phone') {
+            const phoneError = isValidEthiopianPhoneNumber(field.value) ? '' : getPhoneErrorMessage(field.value);
+            setFieldError('phone', phoneError);
+          } else if (fieldId === 'details' && field.value.trim() !== '') {
+            setFieldError('details', '');
+          } else if (fieldId !== 'details') {
+            clearFieldError(fieldId);
+          }
+        });
+
+        field.addEventListener('change', () => {
+          const fieldId = field.id;
+          if (fieldId === 'phone') {
+            const phoneError = isValidEthiopianPhoneNumber(field.value) ? '' : getPhoneErrorMessage(field.value);
+            setFieldError('phone', phoneError);
+          } else if (fieldId === 'details' && field.value.trim() !== '') {
+            setFieldError('details', '');
+          } else if (fieldId !== 'details') {
+            clearFieldError(fieldId);
+          }
+        });
+      });
+    }
+
     // Run the required checks before the form is submitted.
     function validateForm() {
       let isValid = true;
       const fields = [
         { id: 'name', validator: value => value.trim().length >= 2 },
         { id: 'location', validator: value => value.trim().length >= 2 },
-        { id: 'phone', validator: value => value.replace(/\D/g, '').length >= 8 },
+        { id: 'phone', validator: value => isValidEthiopianPhoneNumber(value) },
         { id: 'service', validator: value => value.trim() !== '' },
         { id: 'home', validator: value => value.trim() !== '' },
-        { id: 'details', validator: value => value.trim().length >= 10 }
+        { id: 'details', validator: value => value.trim().length >= 1 }
       ];
 
       fields.forEach(({ id, validator }) => {
@@ -1169,7 +1223,8 @@ text-align: right;
         const isFieldValid = validator(value);
 
         if (!isFieldValid) {
-          setFieldError(id, error);
+          const message = id === 'phone' ? getPhoneErrorMessage(value) : error;
+          setFieldError(id, message);
           isValid = false;
         } else {
           setFieldError(id, '');
@@ -1236,6 +1291,7 @@ text-align: right;
     });
 
     detailsField.addEventListener('input', updateCharCount);
+    bindLiveValidation();
     updateCharCount();
   </script>
 </body>
